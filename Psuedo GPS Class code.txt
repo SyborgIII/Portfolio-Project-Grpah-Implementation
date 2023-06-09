@@ -1,0 +1,41 @@
+package psuedoGPS;
+
+public class PsuedoGPSDriver
+{
+
+	public static void main(String[] args)
+	{
+		Graph graph = new Graph(5);
+		
+		//populate graph 
+		graph.addNode(new Node("Miami"));//0
+		graph.addNode(new Node("Orlando"));//1
+		graph.addNode(new Node("Tampa"));//2
+		graph.addNode(new Node("Tallahassee"));//3
+		graph.addNode(new Node("Jacksonville"));//4
+		
+		//connect nodes of graph 
+		graph.addEdge(0, 1, 4);
+		graph.addEdge(1, 0, 4);
+		graph.addEdge(1, 2, 1);
+		graph.addEdge(1, 4, 3);
+		graph.addEdge(2, 1, 1);
+		graph.addEdge(3, 4, 3);
+		graph.addEdge(4, 1, 3);
+		graph.addEdge(4, 3, 3);
+		
+		//print graph 
+		graph.printGraph();
+		
+		//test to check the value of the time distance between two nodes 
+		System.out.println("The distance between the two vertexs is: " +
+		graph.checkEdge(graph.listOfGraphNodes.indexOf("Orlando"), graph.listOfGraphNodes.indexOf("Tallahassee")));
+		
+		//test to print the adjacent neighbors of a vertex
+		graph.printNeigborsOfVertex("Orlando");
+
+
+
+	}
+
+}

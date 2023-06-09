@@ -1,0 +1,15 @@
+package psuedoGPS;
+
+public class Node
+{
+	//data to be stored
+	String data;
+	
+	//constructor
+	Node(String data)
+	{
+	this.data = data;
+	}
+	
+	 
+}

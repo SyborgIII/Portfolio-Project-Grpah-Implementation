@@ -1,0 +1,103 @@
+package psuedoGPS;
+
+import java.util.ArrayList;
+
+public class Graph
+{
+	//list to track nodes that are in the graph 
+	ArrayList<String> listOfGraphNodes;
+
+	// 2-d array to keep track of each node and their neighbors
+	int[][] adjacencyMatrix;
+
+	// constructor
+	Graph(int size)
+	{
+		listOfGraphNodes = new ArrayList<>();
+		adjacencyMatrix = new int[size][size];
+	}
+
+	// adds a node to the graph using the node class of type string
+	// o(n) time complexity due to it being a dynamic list. 
+	public void addNode(Node node)
+	{
+		listOfGraphNodes.add(node.data);
+	}
+
+	// adds an edge to between nodes. this is a weighted graph so the distance time
+	// are ints subject to change
+	// o(1) time complexity
+	public void addEdge(int sourceNode, int destinationNode, int timeDistance)
+	{
+		adjacencyMatrix[sourceNode][destinationNode] = timeDistance;
+	}
+
+	// returns the value of the time distance between nodes. no connection is a 0
+	// o(1) time complexity
+	public int checkEdge(int sourceNode, int destinationNode)
+	{
+		int edgeValue = adjacencyMatrix[sourceNode][destinationNode];
+		if(edgeValue == 0)
+		{
+			System.out.println("There is no direct conection between those 2 cities.....");
+		}
+		return adjacencyMatrix[sourceNode][destinationNode];
+	}
+
+	 //prints all nodes in the graph and then the adjacency matrix
+	//o(n) time complexity for the node list and o(n^2) for the matrix 
+	public void printGraph()
+	{
+		//prints the nodes of graph 
+		for(String node : listOfGraphNodes)
+		{
+			System.out.print(node + " ");
+		}
+			System.out.println();
+			System.out.println();
+
+		
+		//prints the adjacency list 
+		for (int i = 0; i < adjacencyMatrix.length; i++) 
+		{
+			for (int j = 0; j < adjacencyMatrix[i].length; j++)
+			{
+				System.out.print(adjacencyMatrix[i][j] + " ");
+			}
+			System.out.println();
+			
+		}
+		System.out.println();
+
+	}
+	
+	//prints all the nodes adjacent to the input the string that corresponds to a node
+	//o(n) time complexity 
+	
+	public void printNeigborsOfVertex(String vertex)
+	{
+		int vertexPosition = -1;
+		//locate index 
+		
+		
+		for(int i = 0; i < listOfGraphNodes.size(); i++)
+		{
+			if(listOfGraphNodes.get(i) == vertex)
+			{
+				
+				vertexPosition = i;
+				break;
+			}
+		}
+		System.out.println();
+		System.out.print("All of the nodes adjacent to " + vertex + " are: ");
+		for(int i = 0; i < adjacencyMatrix[vertexPosition].length ; i++)
+		{
+			if(adjacencyMatrix[vertexPosition][i] > 0)
+			{
+				System.out.print(listOfGraphNodes.get(i) + ", ");
+			}
+		}
+		
+	}
+}
